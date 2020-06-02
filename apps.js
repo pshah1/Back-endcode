@@ -12,7 +12,7 @@ function cities(json,query,lat,lng){
   let distances = []
   let totalCity = 0
   let result = []
-  json.forEach((city,index) => {
+  json.forEach((city) => {
     if(city.name){
       if((city.name.toLowerCase()).includes(query.toLowerCase())){
         const score = components.partialMatch(city.name,query,lat,lng);
@@ -54,7 +54,7 @@ function ObjectSort(arr,resultArr)
         bubblesort = false;
         for (let i=0; i < objectlength; i++)
         {   
-            if (objArr[i] >= objArr[i+1]){
+            if (objArr[i] <= objArr[i+1]){
               swap(objArr,i)
               swap(resultArr,i)
               bubblesort = true;
@@ -71,7 +71,7 @@ function swap(arr,i){
   arr[i+1] = temp
 }
 
-router.get('/',(req,res,next) => {
+router.get('/',(req,res) => {
   if(!req.query.q)
     res.json({ message: 'enter city name in query parameter' })
   if (req.query.latitude!==undefined ||  req.query.longitude!==undefined) {
